@@ -1,0 +1,112 @@
+<?php
+
+require"../FUNCTION/fonction.php";
+require"../CONFIGURATION/configurationclient.php";
+
+?>
+<?php
+
+$db_name = 'ladyvente'; 
+$user_name = 'root';
+$user_password ="";
+
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=$db_name", $user_name, $user_password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if ($conn) {
+        echo "Connexion réussie !";
+    }
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+?>
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<?php
+require"../INCLUDE/head.php";
+?>
+<body>
+<style>
+body {
+  --bs-body-font-family: var(--bs-font-monospace);
+  --bs-body-line-height: 1.4;
+  --bs-body-bg: var(--bs-gray-100);
+}
+
+</style>
+<?php
+require"../INCLUDE/sidbar.php";
+?>
+<section class="home-section">
+<?php
+   require"../INCLUDE/newbar.php";
+?>
+<div class="home-content">
+<?php if(isset($message)): ?>
+    <div class="alert alert-success" role="alert">
+        <? $message?>
+      </div>
+<?php endif ?>
+
+<?php if(isset($error)): ?>
+   <?php foreach($error as $erro): ?>
+      <div class="alert alert-danger">
+        <? $erro?>
+      </div>
+    <?php endforeach ?>
+<?php endif ?>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="stl.css"> 
+ 
+    <title>Formulaire d'Inscription</title>
+</head>
+<body>
+    <form action="">
+    
+        <div class="card-header h2 text-center"><h3>Nouveau client</h3></div>
+    <!-- <form action="inscription_post.php" method="POST"> -->
+        <div class="form-row vh-60 mx-auto">
+           
+        <div class="row vh-60 w-50  mx-auto">
+           
+            <label for="Username">Prenom</label>
+            <input type="text" class="form-control" name="Prenom" id="prenom" required mb-2> 
+            <label for="Username">Nom</label>
+            <input type="text" class="form-control" name="Nom" id="Nom" required mb-2> 
+            
+            <label for="Adresse">Adresse </label>
+            <input type="text" class="form-control" name="Adresse" id="Adresse" required mb-2> 
+            
+            <label for="number">Numero</label>
+            <input type="number" class="form-control" name="number" id="number" required mb-2> 
+        
+            <label for="email"> Email</label>
+            <input type="email" class="form-control" name="email" id="email" required mb-2>
+            
+          <label for="">sexe</label>
+            <br><select name="sexe" id="sexe" class="btn btn-secondary dropdown-toggle mb-2" >
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+            <br><button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>    
+      </div>
+    
+      <?php
+  require "../INCLUDE/js.php";
+?>
+
+</body>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="inscript.js"></script>
+</html>
